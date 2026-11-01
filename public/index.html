@@ -2,14 +2,14 @@
 <html lang="th"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>ทะเบียนคุมเลขหนังสือ | โรงเรียนบ้านไร่</title>
-<link rel="icon" href="logo.jpg">
+<link rel="icon" href="logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#eef3ff;--card:#fff;--ink:#2d3250;--mut:#7a7f9e;--pri:#4361ee;--pri2:#7c93ff;--gold:#ffbe0b;--red:#f72585;--ok:#06d6a0;--line:#dbe4ff}
 *{box-sizing:border-box}body{margin:0;font-family:Sarabun,sans-serif;background:var(--bg);color:var(--ink);font-size:15px}
 aside{position:fixed;inset:0 auto 0 0;width:250px;background:linear-gradient(170deg,#2b2fd0,#4361ee 50%,#8b5cf6);color:#fff;padding:18px 14px;display:flex;flex-direction:column;z-index:20;transition:.25s}
 .brand{display:flex;gap:10px;align-items:center;padding:6px 6px 16px;border-bottom:1px solid #ffffff30;margin-bottom:12px}
-.brand img{width:52px;height:60px;object-fit:contain;background:#fff;border-radius:12px;padding:3px}
+.brand img{width:54px;height:62px;object-fit:contain;filter:drop-shadow(0 3px 6px #0004)}
 .brand b{display:block;font-size:16px;line-height:1.2}.brand small{opacity:.8}
 nav button{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;color:#fff;padding:11px 14px;border-radius:12px;font:inherit;cursor:pointer;margin:2px 0;text-align:left;opacity:.88}
 nav button:hover{background:#ffffff1f}nav button.on{background:#fff;color:var(--pri);font-weight:600;opacity:1;box-shadow:0 4px 14px #0002}
@@ -52,10 +52,10 @@ label{display:block;font-size:13px;color:var(--mut);margin:12px 0 4px}.row2{disp
 #pa table{font-size:11pt}#pa th{background:#eee;color:#000;border:1px solid #000;border-radius:0}#pa td{border:1px solid #000;padding:5px 7px}tr{page-break-inside:avoid}thead{display:table-header-group}
 #pa .sg{margin:36px 0 0 60%;text-align:center;font-size:12pt;page-break-inside:avoid}}
 </style></head><body>
-<div id="splash"><img src="logo.jpg" alt="โลโก้"><h1>ระบบทะเบียนคุมเลขหนังสือ</h1><h2>โรงเรียนบ้านไร่ อ.ดอยเต่า จ.เชียงใหม่</h2><p>ทะเบียนคำสั่ง • บันทึกข้อความ • หนังสือนำส่ง</p>
+<div id="splash"><img src="logo.png" alt="โลโก้"><h1>ระบบทะเบียนคุมเลขหนังสือ</h1><h2>โรงเรียนบ้านไร่ อ.ดอยเต่า จ.เชียงใหม่</h2><p>ทะเบียนคำสั่ง • บันทึกข้อความ • หนังสือนำส่ง</p>
 <button class="btn g" onclick="splash.style.opacity=0;setTimeout(()=>splash.remove(),400)">เข้าสู่ระบบ ▶</button>
 <div class="cr">พัฒนาโดย <b>ครูเฉลิมพล จันทร์แดง</b> โรงเรียนบ้านไร่<br>โทร 086-3414181</div></div>
-<aside id="sd"><div class="brand"><img src="logo.jpg"><div><b>ทะเบียนคุมเลขหนังสือ</b><small id="sn">โรงเรียนบ้านไร่</small></div></div>
+<aside id="sd"><div class="brand"><img src="logo.png"><div><b>ทะเบียนคุมเลขหนังสือ</b><small id="sn">โรงเรียนบ้านไร่</small></div></div>
 <nav id="nav"></nav><div class="cs">พัฒนาโดย ครูเฉลิมพล จันทร์แดง<br>โรงเรียนบ้านไร่ โทร 086-3414181</div></aside>
 <main><div class="top"><div style="display:flex;gap:10px;align-items:center"><button class="menu" onclick="sd.classList.toggle('open')">☰</button><h1 id="ttl"></h1></div>
 <div class="bar"><span style="color:var(--mut)">ปี</span><select id="yr" onchange="load()"></select></div></div>
@@ -123,7 +123,7 @@ function prn(v){v.innerHTML=`<div class="card"><h3 style="margin-top:0">พิ�
 <div><label>ปี</label><input disabled value="${label()} ${yr.value} (เปลี่ยนที่มุมขวาบน)"></div></div>
 <p style="color:var(--mut)">กดพิมพ์ แล้วเลือกเครื่องพิมพ์ หรือเลือก “บันทึกเป็น PDF” ในหน้าต่างพิมพ์ของเบราว์เซอร์</p>
 <button class="btn" onclick="doPrint()">🖨️ พิมพ์ / บันทึก PDF</button></div>`}
-function doPrint(){const t=pt.value;pa.innerHTML=`<div class="h"><img src="logo.jpg"><h2>ทะเบียนคุม${T[t].n}</h2><p>${esc(S.school)} ${esc(S.area)}</p><p>${label()} ${yr.value}</p></div>${tbl(t,rows(t),0)}
+function doPrint(){const t=pt.value;pa.innerHTML=`<div class="h"><img src="logo.png"><h2>ทะเบียนคุม${T[t].n}</h2><p>${esc(S.school)} ${esc(S.area)}</p><p>${label()} ${yr.value}</p></div>${tbl(t,rows(t),0)}
 <div class="sg">${S.signer?`(${esc(S.signer)})<br>`:'<br>'}${esc(S.pos)}</div>`;setTimeout(()=>window.print(),150)}
 function sett(v){v.innerHTML=`<div class="card" style="max-width:720px"><h3 style="margin-top:0">ตั้งค่าระบบ</h3>
 <label>ชื่อโรงเรียน</label><input id="s_sc" value="${esc(S.school)}"><label>ที่ตั้ง (หัวรายงาน)</label><input id="s_ar" value="${esc(S.area)}">
