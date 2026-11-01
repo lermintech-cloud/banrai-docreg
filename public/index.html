@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ทะเบียนคุมเลขหนังสือ | โรงเรียนบ้านไร่</title>
+<link rel="icon" href="logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f1fa;--card:#fff;--ink:#2d3250;--mut:#7a7f9e;--pri:#5b6bb5;--pri2:#7b88cf;--gold:#e9b949;--red:#c0485a;--ok:#4fa58a;--line:#e4e2f2}
+*{box-sizing:border-box}body{margin:0;font-family:Sarabun,sans-serif;background:var(--bg);color:var(--ink);font-size:15px}
+aside{position:fixed;inset:0 auto 0 0;width:250px;background:linear-gradient(170deg,#3d4a8a,#5b6bb5 60%,#7b88cf);color:#fff;padding:18px 14px;display:flex;flex-direction:column;z-index:20;transition:.25s}
+.brand{display:flex;gap:10px;align-items:center;padding:6px 6px 16px;border-bottom:1px solid #ffffff30;margin-bottom:12px}
+.brand img{width:52px;height:60px;object-fit:contain;background:#fff;border-radius:12px;padding:3px}
+.brand b{display:block;font-size:16px;line-height:1.2}.brand small{opacity:.8}
+nav button{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;color:#fff;padding:11px 14px;border-radius:12px;font:inherit;cursor:pointer;margin:2px 0;text-align:left;opacity:.88}
+nav button:hover{background:#ffffff1f}nav button.on{background:#fff;color:var(--pri);font-weight:600;opacity:1;box-shadow:0 4px 14px #0002}
+nav hr{border:0;border-top:1px solid #ffffff30;margin:10px 0}
+main{margin-left:250px;padding:26px 30px;min-height:100vh}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+h1{margin:0;font-size:24px}.menu{display:none;border:0;background:var(--pri);color:#fff;border-radius:10px;padding:8px 12px;font-size:18px}
+.card{background:var(--card);border-radius:18px;box-shadow:0 6px 24px #5b6bb51a;padding:20px;margin-bottom:18px}
+.btn{border:0;border-radius:10px;padding:9px 16px;font:inherit;font-weight:500;cursor:pointer;background:var(--pri);color:#fff}
+.btn.g{background:var(--gold);color:#3a2d00}.btn.l{background:#eceaf8;color:var(--pri)}.btn.r{background:#fbe6ea;color:var(--red)}.btn.s{padding:5px 10px;font-size:13px}
+input,select,textarea{font:inherit;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;width:100%;background:#fcfcff;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--pri2)}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.bar>*{width:auto}.bar input[type=search]{flex:1;min-width:160px}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse}
+th{background:#eceaf8;color:var(--pri);text-align:left;padding:11px 12px;font-weight:600;white-space:nowrap}th:first-child{border-radius:10px 0 0 10px}th:last-child{border-radius:0 10px 10px 0}
+td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}tr:hover td{background:#faf9ff}
+.no{font-weight:700;color:var(--pri);white-space:nowrap}.empty{text-align:center;color:var(--mut);padding:36px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.stat{border-radius:18px;padding:20px;color:#fff;cursor:pointer}.stat b{font-size:38px;display:block}
+.s0{background:linear-gradient(135deg,#7b88cf,#5b6bb5)}.s1{background:linear-gradient(135deg,#e6b94d,#d99a3a)}.s2{background:linear-gradient(135deg,#6fbfa5,#4fa58a)}
+.modal{position:fixed;inset:0;background:#2d325088;display:none;align-items:center;justify-content:center;z-index:50;padding:14px}
+.modal.on{display:flex}.box{background:#fff;border-radius:20px;padding:24px;width:100%;max-width:520px;max-height:92vh;overflow:auto}
+label{display:block;font-size:13px;color:var(--mut);margin:12px 0 4px}.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#pa{display:none}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;z-index:99;display:none}
+@media(max-width:860px){aside{transform:translateX(-100%)}aside.open{transform:none}main{margin-left:0;padding:16px}.menu{display:block}.row2{grid-template-columns:1fr}}
+@media print{@page{size:A4 landscape;margin:12mm}body{background:#fff}aside,main,.toast,.modal{display:none!important}#pa{display:block;font-family:Sarabun,sans-serif;color:#000}
+#pa .h{text-align:center;margin-bottom:8px}#pa .h img{height:60px}#pa h2{margin:4px 0;font-size:17pt}#pa p{margin:0;font-size:12pt}
+#pa table{font-size:11pt}#pa th{background:#eee;color:#000;border:1px solid #000;border-radius:0}#pa td{border:1px solid #000;padding:5px 7px}tr{page-break-inside:avoid}thead{display:table-header-group}
+#pa .sg{margin:36px 0 0 60%;text-align:center;font-size:12pt;page-break-inside:avoid}}
+</style></head><body>
+<aside id="sd"><div class="brand"><img src="logo.jpg"><div><b>ทะเบียนคุมเลขหนังสือ</b><small id="sn">โรงเรียนบ้านไร่</small></div></div>
+<nav id="nav"></nav></aside>
+<main><div class="top"><div style="display:flex;gap:10px;align-items:center"><button class="menu" onclick="sd.classList.toggle('open')">☰</button><h1 id="ttl"></h1></div>
+<div class="bar"><span style="color:var(--mut)">ปี</span><select id="yr" onchange="load()"></select></div></div>
+<div id="view"></div></main>
+<div id="pa"></div><div class="modal" id="md"><div class="box" id="mb"></div></div><div class="toast" id="ts"></div>
+<script>
+const T={
+ order:{n:'ทะเบียนคำสั่ง',i:'📜',p:'ผู้ได้รับคำสั่ง',c:'s0'},
+ memo:{n:'บันทึกข้อความ',i:'📝',p:'เรียน',c:'s1'},
+ letter:{n:'หนังสือนำส่ง',i:'📨',p:'ส่งถึง',c:'s2'}};
+const MENU=[['dash','🏠','ภาพรวม'],['order'],['memo'],['letter'],['print','🖨️','พิมพ์รายงาน'],['set','⚙️','ตั้งค่า']];
+const DEF={school:'โรงเรียนบ้านไร่',area:'อำเภอดอยเต่า จังหวัดเชียงใหม่',signer:'',pos:'ผู้อำนวยการโรงเรียนบ้านไร่',yearMode:'academic',acadStart:'05-16',
+ pf:{order:'',memo:'',letter:'ที่ ศธ 04'},yearInNo:true};
+let S=JSON.parse(JSON.stringify(DEF)),tab='dash',docs=[],q='';
+const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MN=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+const fd=d=>{if(!d)return'';const[y,m,x]=d.split('-');return+x+' '+MN[m-1]+' '+(+y+543)};
+const api=async(u,m='GET',b)=>{const r=await fetch('/api/'+u,{method:m,headers:{'content-type':'application/json'},body:b?JSON.stringify(b):undefined});const j=await r.json();if(!r.ok)throw new Error(j.error);return j};
+const toast=t=>{ts.textContent=t;ts.style.display='block';setTimeout(()=>ts.style.display='none',2500)};
+function yearOf(ds){const d=new Date(ds||Date.now()),y=d.getFullYear(),md=(d.getMonth()+1)*100+d.getDate();
+ if(S.yearMode==='fiscal')return(md>=1001?y+1:y)+543;const[a,b]=S.acadStart.split('-').map(Number);return(md>=a*100+b?y:y-1)+543}
+const label=()=>S.yearMode==='fiscal'?'ปีงบประมาณ':'ปีการศึกษา';
+function fillYears(){const cur=yearOf(),o=[];for(let y=cur+1;y>=cur-6;y--)o.push(`<option value="${y}">${label()} ${y}</option>`);const v=yr.value||cur;yr.innerHTML=o.join('');yr.value=v}
+function renderNav(){nav.innerHTML=MENU.map(m=>{const t=T[m[0]];const hr=m[0]==='print'?'<hr>':'';return hr+`<button class="${tab==m[0]?'on':''}" onclick="go('${m[0]}')">${t?t.i:m[1]} ${t?t.n:m[2]}</button>`}).join('');sn.textContent=S.school}
+function go(t){tab=t;q='';sd.classList.remove('open');renderNav();render()}
+async function load(){docs=await api('docs?year='+yr.value);render()}
+function render(){const v=$('view');ttl.textContent=T[tab]?.n||MENU.find(m=>m[0]==tab)[2];yr.parentElement.style.display=tab=='set'?'none':'flex';
+ ({dash,print:prn,set:sett}[tab]||list)(v)}
+function dash(v){const cnt=t=>docs.filter(d=>d.type==t).length;
+ v.innerHTML=`<div class="grid">${Object.keys(T).map(t=>`<div class="stat ${T[t].c}" onclick="go('${t}')"><span>${T[t].i} ${T[t].n}</span><b>${cnt(t)}</b>ฉบับ ใน${label()} ${yr.value}</div>`).join('')}</div>
+ <div class="card" style="margin-top:18px"><h3 style="margin-top:0">ลงทะเบียนล่าสุด</h3><div class="tw"><table><tr><th>ประเภท</th><th>เลขที่</th><th>วันที่</th><th>เรื่อง</th><th>ผู้ปฏิบัติ</th></tr>
+ ${[...docs].sort((a,b)=>b.id-a.id).slice(0,8).map(d=>`<tr><td>${T[d.type].n}</td><td class="no">${esc(d.doc_no)}</td><td>${fd(d.doc_date)}</td><td>${esc(d.subject)}</td><td>${esc(d.owner)}</td></tr>`).join('')||'<tr><td colspan=5 class="empty">ยังไม่มีข้อมูล</td></tr>'}</table></div></div>`}
+function rows(t){return docs.filter(d=>d.type==t)}
+function tbl(t,rs,act){return`<table><tr><th>เลขที่</th><th>วัน เดือน ปี</th><th>เรื่อง</th><th>${T[t].p}</th><th>ผู้ปฏิบัติ</th><th>หมายเหตุ</th>${act?'<th></th>':''}</tr>
+ ${rs.map(d=>`<tr><td class="no">${esc(d.doc_no)}</td><td style="white-space:nowrap">${fd(d.doc_date)}</td><td>${esc(d.subject)}</td><td>${esc(d.party)}</td><td>${esc(d.owner)}</td><td>${esc(d.note)}</td>
+ ${act?`<td style="white-space:nowrap"><button class="btn l s" onclick="edit(${d.id})">แก้ไข</button> <button class="btn r s" onclick="del(${d.id})">ลบ</button></td>`:''}</tr>`).join('')||`<tr><td colspan=7 class="empty">ยังไม่มีรายการ</td></tr>`}</table>`}
+function list(v){v.innerHTML=`<div class="card"><div class="bar" style="margin-bottom:14px"><input type="search" id="sq" placeholder="🔍 ค้นหา เลขที่ / เรื่อง / ผู้ปฏิบัติ" value="${esc(q)}" oninput="q=this.value;fl()"><button class="btn g" onclick="add()">＋ ขอเลขใหม่</button></div><div class="tw" id="tb"></div></div>`;fl()}
+function fl(){const k=q.toLowerCase();$('tb').innerHTML=tbl(tab,rows(tab).filter(d=>!k||[d.doc_no,d.subject,d.party,d.owner,d.note].join(' ').toLowerCase().includes(k)),1)}
+const mkNo=(t,s,y)=>(S.pf[t]||'')+s+(S.yearInNo?'/'+y:'');
+function form(d){const t=d.type;return`<h3 style="margin:0">${d.id?'แก้ไข':'ขอเลขใหม่'} – ${T[t].n}</h3>
+<div class="row2"><div><label>ลำดับที่</label><input type="number" id="f_seq" value="${d.seq}"></div><div><label>วันที่</label><input type="date" id="f_date" value="${d.doc_date}"></div></div>
+<label>เรื่อง</label><textarea id="f_sub" rows="2">${esc(d.subject)}</textarea>
+<label>${T[t].p}</label><input id="f_party" value="${esc(d.party)}"><label>ผู้ปฏิบัติ</label><input id="f_own" value="${esc(d.owner)}" list="ol"><datalist id="ol">${[...new Set(docs.map(x=>x.owner).filter(Boolean))].map(o=>`<option value="${esc(o)}">`).join('')}</datalist>
+<label>หมายเหตุ</label><input id="f_note" value="${esc(d.note)}"><div class="bar" style="margin-top:18px;justify-content:flex-end"><button class="btn l" onclick="md.classList.remove('on')">ยกเลิก</button><button class="btn" onclick="save(${d.id||0},'${t}')">บันทึก</button></div>`}
+function add(){const today=new Date().toISOString().slice(0,10),y=yearOf(today);const seq=Math.max(0,...docs.filter(d=>d.type==tab&&d.year==yr.value).map(d=>d.seq))+1;
+ mb.innerHTML=form({type:tab,seq,doc_date:today,subject:'',party:'',owner:'',note:''});md.classList.add('on')}
+function edit(id){mb.innerHTML=form(docs.find(d=>d.id==id));md.classList.add('on')}
+async function save(id,t){const date=f_date.value,y=yearOf(date),seq=+f_seq.value;if(!f_sub.value.trim()||!seq)return toast('กรุณากรอกลำดับและเรื่อง');
+ if(docs.some(d=>d.type==t&&d.year==y&&d.seq==seq&&d.id!=id)&&!confirm('เลขที่นี้มีอยู่แล้ว ต้องการบันทึกซ้ำหรือไม่?'))return;
+ const b={type:t,year:y,seq,doc_no:mkNo(t,seq,y),doc_date:date,subject:f_sub.value.trim(),party:f_party.value.trim(),owner:f_own.value.trim(),note:f_note.value.trim()};
+ try{await api(id?'docs/'+id:'docs',id?'PUT':'POST',b);md.classList.remove('on');toast('บันทึกแล้ว');if(y!=yr.value){fillYears();yr.value=y}load()}catch(e){toast('ผิดพลาด: '+e.message)}}
+async function del(id){if(!confirm('ลบรายการนี้?'))return;await api('docs/'+id,'DELETE');toast('ลบแล้ว');load()}
+function prn(v){v.innerHTML=`<div class="card"><h3 style="margin-top:0">พิมพ์ทะเบียน (A4 แนวนอน / บันทึกเป็น PDF)</h3>
+<div class="row2"><div><label>ประเภทหนังสือ</label><select id="pt">${Object.keys(T).map(t=>`<option value="${t}">${T[t].n}</option>`).join('')}</select></div>
+<div><label>ปี</label><input disabled value="${label()} ${yr.value} (เปลี่ยนที่มุมขวาบน)"></div></div>
+<p style="color:var(--mut)">กดพิมพ์ แล้วเลือกเครื่องพิมพ์ หรือเลือก “บันทึกเป็น PDF” ในหน้าต่างพิมพ์ของเบราว์เซอร์</p>
+<button class="btn" onclick="doPrint()">🖨️ พิมพ์ / บันทึก PDF</button></div>`}
+function doPrint(){const t=pt.value;pa.innerHTML=`<div class="h"><img src="logo.jpg"><h2>ทะเบียนคุม${T[t].n}</h2><p>${esc(S.school)} ${esc(S.area)}</p><p>${label()} ${yr.value}</p></div>${tbl(t,rows(t),0)}
+<div class="sg">${S.signer?`(${esc(S.signer)})<br>`:'<br>'}${esc(S.pos)}</div>`;setTimeout(()=>window.print(),150)}
+function sett(v){v.innerHTML=`<div class="card" style="max-width:720px"><h3 style="margin-top:0">ตั้งค่าระบบ</h3>
+<label>ชื่อโรงเรียน</label><input id="s_sc" value="${esc(S.school)}"><label>ที่ตั้ง (หัวรายงาน)</label><input id="s_ar" value="${esc(S.area)}">
+<div class="row2"><div><label>ชื่อผู้ลงนามท้ายรายงาน</label><input id="s_sg" value="${esc(S.signer)}"></div><div><label>ตำแหน่ง</label><input id="s_ps" value="${esc(S.pos)}"></div></div>
+<div class="row2"><div><label>การนับปี</label><select id="s_ym" onchange="s_as.parentElement.style.display=this.value=='academic'?'':'none'"><option value="academic" ${S.yearMode=='academic'?'selected':''}>ปีการศึกษา</option><option value="fiscal" ${S.yearMode=='fiscal'?'selected':''}>ปีงบประมาณ (เริ่ม 1 ต.ค.)</option></select></div>
+<div style="${S.yearMode=='academic'?'':'display:none'}"><label>วันเริ่มปีการศึกษา</label><input type="text" id="s_as" value="${S.acadStart}" placeholder="เดือน-วัน เช่น 05-16"></div></div>
+<label>คำนำหน้าเลขที่</label><div class="row2" style="grid-template-columns:repeat(3,1fr)">${Object.keys(T).map(t=>`<div><small>${T[t].n}</small><input id="s_p_${t}" value="${esc(S.pf[t])}" placeholder="เช่น ที่ ศธ 04"></div>`).join('')}</div>
+<label style="display:flex;gap:8px;align-items:center;color:var(--ink)"><input type="checkbox" id="s_yn" style="width:auto" ${S.yearInNo?'checked':''}>ต่อท้ายเลขที่ด้วยปี เช่น 12/2569</label>
+<p style="color:var(--mut);font-size:13px">การแก้คำนำหน้า/รูปแบบ มีผลกับรายการที่บันทึกหลังจากนี้</p>
+<button class="btn" onclick="saveS()">บันทึกการตั้งค่า</button></div>`}
+async function saveS(){S={school:s_sc.value,area:s_ar.value,signer:s_sg.value,pos:s_ps.value,yearMode:s_ym.value,acadStart:/^\d\d-\d\d$/.test(s_as.value)?s_as.value:'05-16',yearInNo:s_yn.checked,pf:Object.fromEntries(Object.keys(T).map(t=>[t,$('s_p_'+t).value]))};
+ await api('settings','PUT',S);toast('บันทึกการตั้งค่าแล้ว');renderNav();fillYears();yr.value=yearOf()}
+(async()=>{try{const c=await api('settings');S={...DEF,...c,pf:{...DEF.pf,...(c.pf||{})}}}catch(e){toast(e.message)}
+ renderNav();fillYears();yr.value=yearOf();try{await load()}catch(e){view.innerHTML='<div class="card empty">เชื่อมต่อฐานข้อมูลไม่ได้: '+esc(e.message)+'</div>'}})();
+</script></body></html>
