@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>ทะเบียนคุมเลขหนังสือ | โรงเรียนบ้านไร่</title>
 <link rel="icon" href="logo.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f3f1fa;--card:#fff;--ink:#2d3250;--mut:#7a7f9e;--pri:#5b6bb5;--pri2:#7b88cf;--gold:#e9b949;--red:#c0485a;--ok:#4fa58a;--line:#e4e2f2}
+:root{--bg:#eef3ff;--card:#fff;--ink:#2d3250;--mut:#7a7f9e;--pri:#4361ee;--pri2:#7c93ff;--gold:#ffbe0b;--red:#f72585;--ok:#06d6a0;--line:#dbe4ff}
 *{box-sizing:border-box}body{margin:0;font-family:Sarabun,sans-serif;background:var(--bg);color:var(--ink);font-size:15px}
-aside{position:fixed;inset:0 auto 0 0;width:250px;background:linear-gradient(170deg,#3d4a8a,#5b6bb5 60%,#7b88cf);color:#fff;padding:18px 14px;display:flex;flex-direction:column;z-index:20;transition:.25s}
+aside{position:fixed;inset:0 auto 0 0;width:250px;background:linear-gradient(170deg,#2b2fd0,#4361ee 50%,#8b5cf6);color:#fff;padding:18px 14px;display:flex;flex-direction:column;z-index:20;transition:.25s}
 .brand{display:flex;gap:10px;align-items:center;padding:6px 6px 16px;border-bottom:1px solid #ffffff30;margin-bottom:12px}
 .brand img{width:52px;height:60px;object-fit:contain;background:#fff;border-radius:12px;padding:3px}
 .brand b{display:block;font-size:16px;line-height:1.2}.brand small{opacity:.8}
@@ -17,55 +17,79 @@ nav hr{border:0;border-top:1px solid #ffffff30;margin:10px 0}
 main{margin-left:250px;padding:26px 30px;min-height:100vh}
 .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
 h1{margin:0;font-size:24px}.menu{display:none;border:0;background:var(--pri);color:#fff;border-radius:10px;padding:8px 12px;font-size:18px}
-.card{background:var(--card);border-radius:18px;box-shadow:0 6px 24px #5b6bb51a;padding:20px;margin-bottom:18px}
-.btn{border:0;border-radius:10px;padding:9px 16px;font:inherit;font-weight:500;cursor:pointer;background:var(--pri);color:#fff}
-.btn.g{background:var(--gold);color:#3a2d00}.btn.l{background:#eceaf8;color:var(--pri)}.btn.r{background:#fbe6ea;color:var(--red)}.btn.s{padding:5px 10px;font-size:13px}
+.card{background:var(--card);border-top:4px solid #ffbe0b;border-radius:18px;box-shadow:0 6px 24px #4361ee26;padding:20px;margin-bottom:18px}
+.btn{border:0;border-radius:10px;padding:9px 16px;font:inherit;font-weight:500;cursor:pointer;background:linear-gradient(135deg,#4361ee,#7c4dff);color:#fff;transition:.15s}.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn.g{background:linear-gradient(135deg,#ffd60a,#ff9f1c);color:#3a2400}.btn.l{background:#e3eaff;color:#2b2fd0}.btn.r{background:#ffe0ef;color:#d00064}.btn.s{padding:5px 10px;font-size:13px}
 input,select,textarea{font:inherit;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;width:100%;background:#fcfcff;color:var(--ink)}
 input:focus,select:focus,textarea:focus{outline:0;border-color:var(--pri2)}
 .bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.bar>*{width:auto}.bar input[type=search]{flex:1;min-width:160px}
 .tw{overflow-x:auto}table{width:100%;border-collapse:collapse}
-th{background:#eceaf8;color:var(--pri);text-align:left;padding:11px 12px;font-weight:600;white-space:nowrap}th:first-child{border-radius:10px 0 0 10px}th:last-child{border-radius:0 10px 10px 0}
-td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}tr:hover td{background:#faf9ff}
+th{background:linear-gradient(90deg,#dbe4ff,#e9dcff);color:#2b2fd0;text-align:left;padding:11px 12px;font-weight:600;white-space:nowrap}th:first-child{border-radius:10px 0 0 10px}th:last-child{border-radius:0 10px 10px 0}
+td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}tr:hover td{background:#f4f7ff}
 .no{font-weight:700;color:var(--pri);white-space:nowrap}.empty{text-align:center;color:var(--mut);padding:36px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
 .stat{border-radius:18px;padding:20px;color:#fff;cursor:pointer}.stat b{font-size:38px;display:block}
-.s0{background:linear-gradient(135deg,#7b88cf,#5b6bb5)}.s1{background:linear-gradient(135deg,#e6b94d,#d99a3a)}.s2{background:linear-gradient(135deg,#6fbfa5,#4fa58a)}
+.s0{background:linear-gradient(135deg,#4cc9f0,#4361ee)}.s1{background:linear-gradient(135deg,#ffbe0b,#fb5607)}.s2{background:linear-gradient(135deg,#06d6a0,#00b4d8)}.stat{box-shadow:0 8px 20px #0002;transition:.2s}.stat:hover{transform:translateY(-3px)}
 .modal{position:fixed;inset:0;background:#2d325088;display:none;align-items:center;justify-content:center;z-index:50;padding:14px}
 .modal.on{display:flex}.box{background:#fff;border-radius:20px;padding:24px;width:100%;max-width:520px;max-height:92vh;overflow:auto}
 label{display:block;font-size:13px;color:var(--mut);margin:12px 0 4px}.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 #pa{display:none}
+#splash{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:radial-gradient(circle at 15% 15%,#ffe066 0,transparent 40%),radial-gradient(circle at 88% 85%,#ff9ecb 0,transparent 42%),radial-gradient(circle at 80% 10%,#9bf6ff 0,transparent 35%),linear-gradient(160deg,#e3eaff,#d6e0ff);transition:opacity .4s}
+#splash img{width:150px;filter:drop-shadow(0 10px 18px #4361ee66);animation:fl 3s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-8px)}}
+#splash h1{font-size:34px;color:#2b2fd0;margin:18px 0 4px}#splash h2{font-size:19px;color:var(--pri);margin:0 0 6px;font-weight:500}#splash p{color:var(--mut);margin:0 0 26px}
+#splash .btn{font-size:17px;padding:13px 38px;border-radius:30px;box-shadow:0 8px 20px #4361ee55}
+#splash .cr{position:absolute;bottom:18px;left:0;right:0;font-size:13px;color:var(--mut);line-height:1.6}#splash .cr b{color:var(--ink)}
+.cs{margin-top:auto;font-size:11.5px;opacity:.8;line-height:1.5;padding:10px 6px 0;border-top:1px solid #ffffff30}
 .toast{position:fixed;bottom:20px;right:20px;background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;z-index:99;display:none}
-@media(max-width:860px){aside{transform:translateX(-100%)}aside.open{transform:none}main{margin-left:0;padding:16px}.menu{display:block}.row2{grid-template-columns:1fr}}
-@media print{@page{size:A4 landscape;margin:12mm}body{background:#fff}aside,main,.toast,.modal{display:none!important}#pa{display:block;font-family:Sarabun,sans-serif;color:#000}
+.bn{display:none}
+@media(max-width:860px){.bn{display:flex;position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:30;background:#ffffffe6;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:26px;box-shadow:0 10px 34px #2b2fd040,0 0 0 1px #4361ee14;padding:8px 6px;justify-content:space-around;align-items:center}
+.bn button{flex:1;border:0;background:none;font:inherit;font-size:11.5px;color:var(--mut);display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;border-radius:18px;cursor:pointer;transition:.2s}
+.bn button i{font-style:normal;font-size:21px;line-height:1;transition:.2s}.bn button.on{color:#2b2fd0;font-weight:700;background:linear-gradient(180deg,#e3eaff,#efe6ff)}.bn button.on i{transform:translateY(-2px) scale(1.12)}
+.bn .fab{flex:0 0 58px;height:58px;margin-top:-30px;border-radius:50%;background:linear-gradient(135deg,#ffd60a,#ff7b00);color:#fff;font-size:32px;font-weight:300;line-height:1;box-shadow:0 8px 20px #ff7b0066,0 0 0 5px #fff;padding:0;justify-content:center}
+.bn .fab:active{transform:scale(.93)}main{padding-bottom:110px}.toast{bottom:100px;left:14px;right:14px;text-align:center}aside{transform:translateX(-100%)}aside.open{transform:none}main{margin-left:0;padding:16px}.menu{display:block}.row2{grid-template-columns:1fr}}
+@media print{@page{size:A4 landscape;margin:12mm}body{background:#fff}aside,main,.toast,.modal,#splash,.bn{display:none!important}#pa{display:block;font-family:Sarabun,sans-serif;color:#000}
 #pa .h{text-align:center;margin-bottom:8px}#pa .h img{height:60px}#pa h2{margin:4px 0;font-size:17pt}#pa p{margin:0;font-size:12pt}
 #pa table{font-size:11pt}#pa th{background:#eee;color:#000;border:1px solid #000;border-radius:0}#pa td{border:1px solid #000;padding:5px 7px}tr{page-break-inside:avoid}thead{display:table-header-group}
 #pa .sg{margin:36px 0 0 60%;text-align:center;font-size:12pt;page-break-inside:avoid}}
 </style></head><body>
+<div id="splash"><img src="logo.jpg" alt="โลโก้"><h1>ระบบทะเบียนคุมเลขหนังสือ</h1><h2>โรงเรียนบ้านไร่ อ.ดอยเต่า จ.เชียงใหม่</h2><p>ทะเบียนคำสั่ง • บันทึกข้อความ • หนังสือนำส่ง</p>
+<button class="btn g" onclick="splash.style.opacity=0;setTimeout(()=>splash.remove(),400)">เข้าสู่ระบบ ▶</button>
+<div class="cr">พัฒนาโดย <b>ครูเฉลิมพล จันทร์แดง</b> โรงเรียนบ้านไร่<br>โทร 086-3414181</div></div>
 <aside id="sd"><div class="brand"><img src="logo.jpg"><div><b>ทะเบียนคุมเลขหนังสือ</b><small id="sn">โรงเรียนบ้านไร่</small></div></div>
-<nav id="nav"></nav></aside>
+<nav id="nav"></nav><div class="cs">พัฒนาโดย ครูเฉลิมพล จันทร์แดง<br>โรงเรียนบ้านไร่ โทร 086-3414181</div></aside>
 <main><div class="top"><div style="display:flex;gap:10px;align-items:center"><button class="menu" onclick="sd.classList.toggle('open')">☰</button><h1 id="ttl"></h1></div>
 <div class="bar"><span style="color:var(--mut)">ปี</span><select id="yr" onchange="load()"></select></div></div>
 <div id="view"></div></main>
-<div id="pa"></div><div class="modal" id="md"><div class="box" id="mb"></div></div><div class="toast" id="ts"></div>
+<div id="pa"></div><div class="modal" id="md"><div class="box" id="mb"></div></div><div class="bn" id="bn"></div><div class="toast" id="ts"></div>
 <script>
 const T={
  order:{n:'ทะเบียนคำสั่ง',i:'📜',p:'ผู้ได้รับคำสั่ง',c:'s0'},
  memo:{n:'บันทึกข้อความ',i:'📝',p:'เรียน',c:'s1'},
  letter:{n:'หนังสือนำส่ง',i:'📨',p:'ส่งถึง',c:'s2'}};
 const MENU=[['dash','🏠','ภาพรวม'],['order'],['memo'],['letter'],['print','🖨️','พิมพ์รายงาน'],['set','⚙️','ตั้งค่า']];
-const DEF={school:'โรงเรียนบ้านไร่',area:'อำเภอดอยเต่า จังหวัดเชียงใหม่',signer:'',pos:'ผู้อำนวยการโรงเรียนบ้านไร่',yearMode:'academic',acadStart:'05-16',
+const DEF={school:'โรงเรียนบ้านไร่',area:'อำเภอดอยเต่า จังหวัดเชียงใหม่',signer:'',pos:'ผู้อำนวยการโรงเรียนบ้านไร่',yearMode:'fiscal',startYear:2570,acadStart:'05-16',
  pf:{order:'',memo:'',letter:'ที่ ศธ 04'},yearInNo:true};
 let S=JSON.parse(JSON.stringify(DEF)),tab='dash',docs=[],q='';
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const MN=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
 const fd=d=>{if(!d)return'';const[y,m,x]=d.split('-');return+x+' '+MN[m-1]+' '+(+y+543)};
-const api=async(u,m='GET',b)=>{const r=await fetch('/api/'+u,{method:m,headers:{'content-type':'application/json'},body:b?JSON.stringify(b):undefined});const j=await r.json();if(!r.ok)throw new Error(j.error);return j};
+const api=async(u,m='GET',b)=>{const r=await fetch('/api/'+u,{method:m,headers:{'content-type':'application/json','x-pin':sessionStorage.pin||''},body:b?JSON.stringify(b):undefined});const j=await r.json();if(!r.ok){if(r.status==401)sessionStorage.removeItem('pin');throw new Error(j.error)}return j};
+window.onunhandledrejection=e=>toast(e.reason.message);
+function needPin(){return new Promise(res=>{if(sessionStorage.pin)return res(true);
+ mb.innerHTML='<h3 style="margin:0">🔒 ใส่รหัสผ่านเพื่อดำเนินการ</h3><label>การแก้ไข / ลบ / ตั้งค่า ต้องใช้รหัสผ่าน</label><input type="password" id="pin" inputmode="numeric"><div class="bar" style="margin-top:18px;justify-content:flex-end"><button class="btn l" id="pc">ยกเลิก</button><button class="btn" id="pk">ยืนยัน</button></div>';
+ md.classList.add('on');pin.focus();pc.onclick=()=>{md.classList.remove('on');res(false)};
+ const ok=async()=>{sessionStorage.pin=pin.value;try{await api('verify','POST');md.classList.remove('on');res(true)}catch(e){toast('รหัสผ่านไม่ถูกต้อง');pin.value='';pin.focus()}};
+ pk.onclick=ok;pin.onkeydown=e=>e.key=='Enter'&&ok()})}
 const toast=t=>{ts.textContent=t;ts.style.display='block';setTimeout(()=>ts.style.display='none',2500)};
 function yearOf(ds){const d=new Date(ds||Date.now()),y=d.getFullYear(),md=(d.getMonth()+1)*100+d.getDate();
  if(S.yearMode==='fiscal')return(md>=1001?y+1:y)+543;const[a,b]=S.acadStart.split('-').map(Number);return(md>=a*100+b?y:y-1)+543}
 const label=()=>S.yearMode==='fiscal'?'ปีงบประมาณ':'ปีการศึกษา';
-function fillYears(){const cur=yearOf(),o=[];for(let y=cur+1;y>=cur-6;y--)o.push(`<option value="${y}">${label()} ${y}</option>`);const v=yr.value||cur;yr.innerHTML=o.join('');yr.value=v}
-function renderNav(){nav.innerHTML=MENU.map(m=>{const t=T[m[0]];const hr=m[0]==='print'?'<hr>':'';return hr+`<button class="${tab==m[0]?'on':''}" onclick="go('${m[0]}')">${t?t.i:m[1]} ${t?t.n:m[2]}</button>`}).join('');sn.textContent=S.school}
+function fillYears(){const cur=Math.max(yearOf(),S.startYear),o=[];for(let y=cur+1;y>=S.startYear;y--)o.push(`<option value="${y}">${label()} ${y}</option>`);const v=yr.value||cur;yr.innerHTML=o.join('');yr.value=v}
+function renderNav(){nav.innerHTML=MENU.map(m=>{const t=T[m[0]];const hr=m[0]==='print'?'<hr>':'';return hr+`<button class="${tab==m[0]?'on':''}" onclick="go('${m[0]}')">${t?t.i:m[1]} ${t?t.n:m[2]}</button>`}).join('');sn.textContent=S.school;
+ const B=(t,i,l)=>`<button class="${tab==t?'on':''}" onclick="go('${t}')"><i>${i}</i>${l}</button>`;
+ bn.innerHTML=B('dash','🏠','ภาพรวม')+B('order','📜','คำสั่ง')+'<button class="fab" onclick="quickAdd()" aria-label="ขอเลขใหม่">＋</button>'+B('memo','📝','บันทึก')+B('letter','📨','นำส่ง')}
+function quickAdd(){if(T[tab])return add();
+ mb.innerHTML='<h3 style="margin:0 0 14px">ขอเลขหนังสือประเภทใด?</h3>'+Object.keys(T).map(t=>`<button class="btn ${T[t].c=='s1'?'g':''}" style="width:100%;margin-bottom:10px;padding:14px;font-size:16px" onclick="md.classList.remove('on');go('${t}');add()">${T[t].i} ${T[t].n}</button>`).join('')+'<button class="btn l" style="width:100%" onclick="md.classList.remove(\'on\')">ยกเลิก</button>';md.classList.add('on')}
 function go(t){tab=t;q='';sd.classList.remove('open');renderNav();render()}
 async function load(){docs=await api('docs?year='+yr.value);render()}
 function render(){const v=$('view');ttl.textContent=T[tab]?.n||MENU.find(m=>m[0]==tab)[2];yr.parentElement.style.display=tab=='set'?'none':'flex';
@@ -88,12 +112,12 @@ function form(d){const t=d.type;return`<h3 style="margin:0">${d.id?'แก้ไ
 <label>หมายเหตุ</label><input id="f_note" value="${esc(d.note)}"><div class="bar" style="margin-top:18px;justify-content:flex-end"><button class="btn l" onclick="md.classList.remove('on')">ยกเลิก</button><button class="btn" onclick="save(${d.id||0},'${t}')">บันทึก</button></div>`}
 function add(){const today=new Date().toISOString().slice(0,10),y=yearOf(today);const seq=Math.max(0,...docs.filter(d=>d.type==tab&&d.year==yr.value).map(d=>d.seq))+1;
  mb.innerHTML=form({type:tab,seq,doc_date:today,subject:'',party:'',owner:'',note:''});md.classList.add('on')}
-function edit(id){mb.innerHTML=form(docs.find(d=>d.id==id));md.classList.add('on')}
-async function save(id,t){const date=f_date.value,y=yearOf(date),seq=+f_seq.value;if(!f_sub.value.trim()||!seq)return toast('กรุณากรอกลำดับและเรื่อง');
+async function edit(id){if(!await needPin())return;mb.innerHTML=form(docs.find(d=>d.id==id));md.classList.add('on')}
+async function save(id,t){const date=f_date.value,y=yearOf(date),seq=+f_seq.value;if(!f_sub.value.trim()||!seq)return toast('กรุณากรอกลำดับและเรื่อง');if(y<S.startYear)return toast('วันที่อยู่ก่อนปีเริ่มต้นระบบ ('+S.startYear+')');
  if(docs.some(d=>d.type==t&&d.year==y&&d.seq==seq&&d.id!=id)&&!confirm('เลขที่นี้มีอยู่แล้ว ต้องการบันทึกซ้ำหรือไม่?'))return;
  const b={type:t,year:y,seq,doc_no:mkNo(t,seq,y),doc_date:date,subject:f_sub.value.trim(),party:f_party.value.trim(),owner:f_own.value.trim(),note:f_note.value.trim()};
  try{await api(id?'docs/'+id:'docs',id?'PUT':'POST',b);md.classList.remove('on');toast('บันทึกแล้ว');if(y!=yr.value){fillYears();yr.value=y}load()}catch(e){toast('ผิดพลาด: '+e.message)}}
-async function del(id){if(!confirm('ลบรายการนี้?'))return;await api('docs/'+id,'DELETE');toast('ลบแล้ว');load()}
+async function del(id){if(!await needPin()||!confirm('ลบรายการนี้?'))return;await api('docs/'+id,'DELETE');toast('ลบแล้ว');load()}
 function prn(v){v.innerHTML=`<div class="card"><h3 style="margin-top:0">พิมพ์ทะเบียน (A4 แนวนอน / บันทึกเป็น PDF)</h3>
 <div class="row2"><div><label>ประเภทหนังสือ</label><select id="pt">${Object.keys(T).map(t=>`<option value="${t}">${T[t].n}</option>`).join('')}</select></div>
 <div><label>ปี</label><input disabled value="${label()} ${yr.value} (เปลี่ยนที่มุมขวาบน)"></div></div>
@@ -106,12 +130,13 @@ function sett(v){v.innerHTML=`<div class="card" style="max-width:720px"><h3 styl
 <div class="row2"><div><label>ชื่อผู้ลงนามท้ายรายงาน</label><input id="s_sg" value="${esc(S.signer)}"></div><div><label>ตำแหน่ง</label><input id="s_ps" value="${esc(S.pos)}"></div></div>
 <div class="row2"><div><label>การนับปี</label><select id="s_ym" onchange="s_as.parentElement.style.display=this.value=='academic'?'':'none'"><option value="academic" ${S.yearMode=='academic'?'selected':''}>ปีการศึกษา</option><option value="fiscal" ${S.yearMode=='fiscal'?'selected':''}>ปีงบประมาณ (เริ่ม 1 ต.ค.)</option></select></div>
 <div style="${S.yearMode=='academic'?'':'display:none'}"><label>วันเริ่มปีการศึกษา</label><input type="text" id="s_as" value="${S.acadStart}" placeholder="เดือน-วัน เช่น 05-16"></div></div>
-<label>คำนำหน้าเลขที่</label><div class="row2" style="grid-template-columns:repeat(3,1fr)">${Object.keys(T).map(t=>`<div><small>${T[t].n}</small><input id="s_p_${t}" value="${esc(S.pf[t])}" placeholder="เช่น ที่ ศธ 04"></div>`).join('')}</div>
+<label>ปีเริ่มต้นของระบบ (พ.ศ.)</label><input type="number" id="s_sy" value="${S.startYear}"><label>คำนำหน้าเลขที่</label><div class="row2" style="grid-template-columns:repeat(3,1fr)">${Object.keys(T).map(t=>`<div><small>${T[t].n}</small><input id="s_p_${t}" value="${esc(S.pf[t])}" placeholder="เช่น ที่ ศธ 04"></div>`).join('')}</div>
 <label style="display:flex;gap:8px;align-items:center;color:var(--ink)"><input type="checkbox" id="s_yn" style="width:auto" ${S.yearInNo?'checked':''}>ต่อท้ายเลขที่ด้วยปี เช่น 12/2569</label>
 <p style="color:var(--mut);font-size:13px">การแก้คำนำหน้า/รูปแบบ มีผลกับรายการที่บันทึกหลังจากนี้</p>
-<button class="btn" onclick="saveS()">บันทึกการตั้งค่า</button></div>`}
-async function saveS(){S={school:s_sc.value,area:s_ar.value,signer:s_sg.value,pos:s_ps.value,yearMode:s_ym.value,acadStart:/^\d\d-\d\d$/.test(s_as.value)?s_as.value:'05-16',yearInNo:s_yn.checked,pf:Object.fromEntries(Object.keys(T).map(t=>[t,$('s_p_'+t).value]))};
- await api('settings','PUT',S);toast('บันทึกการตั้งค่าแล้ว');renderNav();fillYears();yr.value=yearOf()}
+<button class="btn" onclick="saveS()">🔒 บันทึกการตั้งค่า</button></div><div class="card" style="max-width:720px"><h3 style="margin-top:0">🔒 เปลี่ยนรหัสผ่าน</h3><p style="color:var(--mut);margin-top:0">รหัสเริ่มต้นคือ 123456 ควรเปลี่ยนหลังติดตั้ง</p><input type="password" id="s_np" placeholder="รหัสใหม่ (อย่างน้อย 4 ตัว)"><br><br><button class="btn" onclick="chPin()">เปลี่ยนรหัสผ่าน</button></div>`}
+async function chPin(){if(!await needPin())return;await api('pin','PUT',{pin:s_np.value});sessionStorage.pin=s_np.value;s_np.value='';toast('เปลี่ยนรหัสผ่านแล้ว')}
+async function saveS(){if(!await needPin())return;S={school:s_sc.value,area:s_ar.value,signer:s_sg.value,pos:s_ps.value,yearMode:s_ym.value,acadStart:/^\d\d-\d\d$/.test(s_as.value)?s_as.value:'05-16',yearInNo:s_yn.checked,startYear:+s_sy.value||2570,pf:Object.fromEntries(Object.keys(T).map(t=>[t,$('s_p_'+t).value]))};
+ await api('settings','PUT',S);toast('บันทึกการตั้งค่าแล้ว');renderNav();fillYears();yr.value=Math.max(yearOf(),S.startYear)}
 (async()=>{try{const c=await api('settings');S={...DEF,...c,pf:{...DEF.pf,...(c.pf||{})}}}catch(e){toast(e.message)}
- renderNav();fillYears();yr.value=yearOf();try{await load()}catch(e){view.innerHTML='<div class="card empty">เชื่อมต่อฐานข้อมูลไม่ได้: '+esc(e.message)+'</div>'}})();
+ renderNav();fillYears();yr.value=Math.max(yearOf(),S.startYear);try{await load()}catch(e){view.innerHTML='<div class="card empty">เชื่อมต่อฐานข้อมูลไม่ได้: '+esc(e.message)+'</div>'}})();
 </script></body></html>

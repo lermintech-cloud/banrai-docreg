@@ -10,6 +10,7 @@ async function init(db) {
   ]);
   ready = true;
 }
+const getPin = async db => (await db.prepare('SELECT v FROM settings WHERE k="pin"').first())?.v || '123456'; // รหัสเริ่มต้น 123456
 export async function onRequest({ request, env }) {
   const db = env.DB;
   if (!db) return J({ error: 'ยังไม่ได้ผูก D1 binding ชื่อ DB' }, 500);
@@ -18,8 +19,18 @@ export async function onRequest({ request, env }) {
   const [res, id] = url.pathname.replace(/^\/api\/?/, '').split('/');
   const m = request.method;
   try {
+    const needPin = async () => (request.headers.get('x-pin') || '') === (await getPin(db)) ? null : J({ error: 'รหัสผ่านไม่ถูกต้อง' }, 401);
+    if (res === 'verify') return (await needPin()) || J({ ok: 1 });
+    if (res === 'pin' && m === 'PUT') {
+      const bad = await needPin(); if (bad) return bad;
+      const { pin } = await request.json();
+      if (!pin || String(pin).length < 4) return J({ error: 'รหัสต้องมีอย่างน้อย 4 ตัว' }, 400);
+      await db.prepare('INSERT INTO settings(k,v) VALUES("pin",?) ON CONFLICT(k) DO UPDATE SET v=excluded.v').bind(String(pin)).run();
+      return J({ ok: 1 });
+    }
     if (res === 'settings') {
       if (m === 'PUT') {
+        const bad = await needPin(); if (bad) return bad;
         await db.prepare('INSERT INTO settings(k,v) VALUES("cfg",?) ON CONFLICT(k) DO UPDATE SET v=excluded.v').bind(JSON.stringify(await request.json())).run();
         return J({ ok: 1 });
       }
@@ -35,10 +46,11 @@ export async function onRequest({ request, env }) {
         q += ' ORDER BY type,year,seq';
         return J((await db.prepare(q).bind(...b).all()).results);
       }
+      if (m === 'DELETE' || m === 'PUT') { const bad = await needPin(); if (bad) return bad; }
       if (m === 'DELETE') { await db.prepare('DELETE FROM docs WHERE id=?').bind(+id).run(); return J({ ok: 1 }); }
       const d = await request.json();
       const v = [d.type, +d.year, +d.seq, d.doc_no || '', d.doc_date || '', d.subject || '', d.party || '', d.owner || '', d.note || ''];
-      if (m === 'POST') {
+      if (m === 'POST') { // เพิ่มรายการใหม่ ไม่ต้องใช้รหัส
         const r = await db.prepare('INSERT INTO docs(type,year,seq,doc_no,doc_date,subject,party,owner,note) VALUES(?,?,?,?,?,?,?,?,?)').bind(...v).run();
         return J({ id: r.meta.last_row_id });
       }
