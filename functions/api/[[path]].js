@@ -8,9 +8,22 @@ async function init(db) {
     db.prepare(`CREATE INDEX IF NOT EXISTS idx_docs ON docs(type,year,seq)`),
     db.prepare(`CREATE TABLE IF NOT EXISTS settings(k TEXT PRIMARY KEY,v TEXT)`)
   ]);
+  await db.prepare('INSERT OR IGNORE INTO settings(k,v) VALUES("pin",?)').bind(await sha('123456')).run(); // รหัสเริ่มต้น 123456 (เก็บเป็น hash)
   ready = true;
 }
-const getPin = async db => (await db.prepare('SELECT v FROM settings WHERE k="pin"').first())?.v || '123456'; // รหัสเริ่มต้น 123456
+async function sha(s) {
+  const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('banrai-docreg:' + s));
+  return 'h:' + [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('');
+}
+async function checkPin(db, pin) {
+  const row = await db.prepare('SELECT v FROM settings WHERE k="pin"').first();
+  const st = row?.v;
+  if (!st) return pin === '123456';
+  if (st.startsWith('h:')) return st === await sha(pin);
+  if (st !== pin) return false; // รหัสแบบเก่า (ข้อความธรรมดา) -> อัปเกรดเป็น hash
+  await db.prepare('UPDATE settings SET v=? WHERE k="pin"').bind(await sha(pin)).run();
+  return true;
+}
 export async function onRequest({ request, env }) {
   const db = env.DB;
   if (!db) return J({ error: 'ยังไม่ได้ผูก D1 binding ชื่อ DB' }, 500);
@@ -19,13 +32,13 @@ export async function onRequest({ request, env }) {
   const [res, id] = url.pathname.replace(/^\/api\/?/, '').split('/');
   const m = request.method;
   try {
-    const needPin = async () => (request.headers.get('x-pin') || '') === (await getPin(db)) ? null : J({ error: 'รหัสผ่านไม่ถูกต้อง' }, 401);
+    const needPin = async () => (await checkPin(db, request.headers.get('x-pin') || '')) ? null : J({ error: 'รหัสผ่านไม่ถูกต้อง' }, 401);
     if (res === 'verify') return (await needPin()) || J({ ok: 1 });
     if (res === 'pin' && m === 'PUT') {
       const bad = await needPin(); if (bad) return bad;
       const { pin } = await request.json();
       if (!pin || String(pin).length < 4) return J({ error: 'รหัสต้องมีอย่างน้อย 4 ตัว' }, 400);
-      await db.prepare('INSERT INTO settings(k,v) VALUES("pin",?) ON CONFLICT(k) DO UPDATE SET v=excluded.v').bind(String(pin)).run();
+      await db.prepare('INSERT INTO settings(k,v) VALUES("pin",?) ON CONFLICT(k) DO UPDATE SET v=excluded.v').bind(await sha(String(pin))).run();
       return J({ ok: 1 });
     }
     if (res === 'settings') {

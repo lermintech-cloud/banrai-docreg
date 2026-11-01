@@ -34,6 +34,9 @@ td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}tr:h
 .modal.on{display:flex}.box{background:#fff;border-radius:20px;padding:24px;width:100%;max-width:520px;max-height:92vh;overflow:auto}
 label{display:block;font-size:13px;color:var(--mut);margin:12px 0 4px}.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 #pa{display:none}
+.pd{font-size:26px;letter-spacing:8px;text-align:center;height:54px;line-height:54px;background:#f4f7ff;border:1.5px solid var(--line);border-radius:14px;margin-bottom:14px;color:var(--pri);overflow:hidden}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:340px;margin:0 auto}.kp button{height:60px;border:0;border-radius:16px;font:inherit;font-size:24px;font-weight:600;background:#eef2ff;color:#2b2fd0;cursor:pointer;transition:.1s;touch-action:manipulation}
+.kp button:active{background:linear-gradient(135deg,#4361ee,#7c4dff);color:#fff;transform:scale(.94)}.kp .kx{font-size:15px;color:var(--mut)}.kp .kb{font-size:22px;background:#ffe0ef;color:#d00064}
 #splash{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:radial-gradient(circle at 15% 15%,#ffe066 0,transparent 40%),radial-gradient(circle at 88% 85%,#ff9ecb 0,transparent 42%),radial-gradient(circle at 80% 10%,#9bf6ff 0,transparent 35%),linear-gradient(160deg,#e3eaff,#d6e0ff);transition:opacity .4s}
 #splash img{width:150px;filter:drop-shadow(0 10px 18px #4361ee66);animation:fl 3s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-8px)}}
 #splash h1{font-size:34px;color:#2b2fd0;margin:18px 0 4px}#splash h2{font-size:19px;color:var(--pri);margin:0 0 6px;font-weight:500}#splash p{color:var(--mut);margin:0 0 26px}
@@ -75,11 +78,15 @@ const MN=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.�
 const fd=d=>{if(!d)return'';const[y,m,x]=d.split('-');return+x+' '+MN[m-1]+' '+(+y+543)};
 const api=async(u,m='GET',b)=>{const r=await fetch('/api/'+u,{method:m,headers:{'content-type':'application/json','x-pin':sessionStorage.pin||''},body:b?JSON.stringify(b):undefined});const j=await r.json();if(!r.ok){if(r.status==401)sessionStorage.removeItem('pin');throw new Error(j.error)}return j};
 window.onunhandledrejection=e=>toast(e.reason.message);
-function needPin(){return new Promise(res=>{if(sessionStorage.pin)return res(true);
- mb.innerHTML='<h3 style="margin:0">🔒 ใส่รหัสผ่านเพื่อดำเนินการ</h3><label>การแก้ไข / ลบ / ตั้งค่า ต้องใช้รหัสผ่าน</label><input type="password" id="pin" inputmode="numeric"><div class="bar" style="margin-top:18px;justify-content:flex-end"><button class="btn l" id="pc">ยกเลิก</button><button class="btn" id="pk">ยืนยัน</button></div>';
- md.classList.add('on');pin.focus();pc.onclick=()=>{md.classList.remove('on');res(false)};
- const ok=async()=>{sessionStorage.pin=pin.value;try{await api('verify','POST');md.classList.remove('on');res(true)}catch(e){toast('รหัสผ่านไม่ถูกต้อง');pin.value='';pin.focus()}};
- pk.onclick=ok;pin.onkeydown=e=>e.key=='Enter'&&ok()})}
+function needPin(){return new Promise(res=>{if(sessionStorage.pin)return res(true);let v='';
+ mb.innerHTML=`<h3 style="margin:0;text-align:center">🔒 ใส่รหัสผ่าน</h3><p style="text-align:center;color:var(--mut);margin:6px 0 12px">การแก้ไข / ลบ / ตั้งค่า ต้องใช้รหัสผ่าน</p><div id="pd" class="pd"></div><div class="kp">${[1,2,3,4,5,6,7,8,9].map(n=>`<button data-k="${n}">${n}</button>`).join('')}<button data-k="x" class="kx">ยกเลิก</button><button data-k="0">0</button><button data-k="b" class="kb">⌫</button></div><button class="btn" id="pk" style="width:100%;margin-top:12px;padding:13px;font-size:16px">ยืนยัน</button>`;
+ const show=()=>pd.textContent=v?'●'.repeat(v.length):'\u00a0';
+ const close=r=>{document.removeEventListener('keydown',kd);md.classList.remove('on');res(r)};
+ const ok=async()=>{if(!v)return;sessionStorage.pin=v;try{await api('verify','POST');close(true)}catch(e){toast('รหัสผ่านไม่ถูกต้อง');v='';show()}};
+ const kd=e=>{if(/^\d$/.test(e.key)&&v.length<12){v+=e.key;show()}else if(e.key=='Backspace'){v=v.slice(0,-1);show()}else if(e.key=='Enter')ok();else if(e.key=='Escape')close(false)};
+ document.addEventListener('keydown',kd);
+ mb.querySelector('.kp').onclick=e=>{const k=e.target.dataset&&e.target.dataset.k;if(k==null)return;if(k=='x')close(false);else if(k=='b'){v=v.slice(0,-1);show()}else if(v.length<12){v+=k;show()}};
+ pk.onclick=ok;md.classList.add('on');show()})}
 const toast=t=>{ts.textContent=t;ts.style.display='block';setTimeout(()=>ts.style.display='none',2500)};
 function yearOf(ds){const d=new Date(ds||Date.now()),y=d.getFullYear(),md=(d.getMonth()+1)*100+d.getDate();
  if(S.yearMode==='fiscal')return(md>=1001?y+1:y)+543;const[a,b]=S.acadStart.split('-').map(Number);return(md>=a*100+b?y:y-1)+543}
